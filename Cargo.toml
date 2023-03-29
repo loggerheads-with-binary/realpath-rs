@@ -1,0 +1,20 @@
+[package]
+name = "realpath-rs"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "realpath"
+path = "src/lib.rs"
+types = ["cdylib" , "rlib"]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+path-absolutize = "*"
+
+[target.'cfg(any(target_os = "linux", target_os = "macos", target_os = "freebsd", target_os = "dragonfly", target_os = "openbsd", target_os = "netbsd"))'.dependencies]
+libc = "*"
+
+[target.'cfg(target_os = "windows")'.dependencies]
+

@@ -1,0 +1,5 @@
+/target
+/Cargo.lock
+
+#Only for testing
+src/main.rs  
