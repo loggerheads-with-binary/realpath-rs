@@ -9,5 +9,5 @@ use std::path::PathBuf;
 
 let src = PathBuf::from("Cargo.toml");
 let dest : PathBuf = realpath(&src)?; 
-println!("{} -> {}", src.display(), dest.display()); 
+println!("{} -> {}", src, dest); 
 ```
