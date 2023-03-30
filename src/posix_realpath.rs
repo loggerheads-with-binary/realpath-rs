@@ -6,7 +6,7 @@ use path_absolutize::Absolutize;
 #[no_mangle]
 fn step_by_step_canonicalize(path: &mut PathBuf) {
 
-    let mut components = path.components().collect::<Vec<PathBuf>>();
+    let mut components = path.components().collect::<Vec<String>>();
     let mut head = path.clone();
     let mut tail = PathBuf::new();
     let mut result = head.canonicalize(); 
@@ -27,7 +27,7 @@ fn step_by_step_canonicalize(path: &mut PathBuf) {
         component = components.pop();
 
         match component{
-            Some(component) => {tail = component.join(tail)},
+            Some(component) => {tail = PathBuf::from(component).join(tail)},
             None => return,
         } 
     }
