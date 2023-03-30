@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"externcrate":[["path_dedot",""]],"trait":[["Absolutize","Let `Path` and `PathBuf` have `absolutize` and `absolutize_virtually` method."]]};
