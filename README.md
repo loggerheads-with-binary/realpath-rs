@@ -1,7 +1,7 @@
 # realpath-rs
 A cross-platform Rust equivalent of python3's `os.path.realpath`
 
-## Usage of program 
+## Usage
 
 ```rust 
 use realpath::realpath; 
