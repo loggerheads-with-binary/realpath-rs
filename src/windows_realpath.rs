@@ -11,6 +11,7 @@ fn step_by_step_canonicalize(path: &mut PathBuf) {
     let mut tail = PathBuf::new();
     let mut result = head.canonicalize(); 
     let mut component; 
+    let mut cx; 
 
     //Canonicalize the head 
     //If error is raised, head = head.parent 
@@ -27,7 +28,11 @@ fn step_by_step_canonicalize(path: &mut PathBuf) {
         component = components.pop();
 
         match component{
-            Some(component) => tail.push(component),
+            Some(component) => {
+                //tail = component\tail
+                cx = PathBuf::from(component.as_os_str());
+                tail = cx.join(tail);
+            }
             None => return,
         } 
     }
