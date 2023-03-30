@@ -4,9 +4,7 @@ version = "0.1.0"
 edition = "2021"
 description = "A cross-platform Rust equivalent of python3's `os.path.realpath`"
 license = "MIT"
-license-file = "LICENSE"
 authors = ["Aniruddh Radhakrisnan<aniruddh.iitb.92@gmail.com>"]
-documentation = "docs/doc/realpath/index.html"
 repository = "https://www.github.com/loggerheads-with-binary/realpath-rs" 
 
 [lib]
