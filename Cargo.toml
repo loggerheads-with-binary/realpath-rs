@@ -15,5 +15,5 @@ types = ["cdylib" , "rlib"]
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-path-absolutize = "*"
+path-absolutize = "3.0.14"
 
