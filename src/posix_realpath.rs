@@ -27,7 +27,7 @@ fn step_by_step_canonicalize(path: &mut PathBuf) {
         component = components.pop();
 
         match component{
-            Some(component) => tail.push(component),
+            Some(component) => {tail = PathBuf::from(component).join(tail)},
             None => return,
         } 
     }
