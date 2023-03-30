@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"static":[["MAIN_SEPARATOR","The main separator for the target OS."]],"trait":[["ParseDot","Let `Path` and `PathBuf` have `parse_dot` method."],["ParsePrefix",""]]};

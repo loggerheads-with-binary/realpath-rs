@@ -3,3 +3,8 @@
 
 #Only for testing
 src/main.rs  
+
+#Documentation 
+docs/release 
+docs/*.json 
+docs/CACHEDIR.TAG
