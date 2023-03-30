@@ -38,6 +38,10 @@ fn step_by_step_canonicalize(path: &mut PathBuf) {
     }
     
     let result = result.unwrap().join(tail);
+    let result = result.absolutize().unwrap().to_path_buf();
+    
+    //Remove last / from the result 
+
     *path = result;
 
 }
