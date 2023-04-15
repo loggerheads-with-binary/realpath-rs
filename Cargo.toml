@@ -1,6 +1,6 @@
 [package]
 name = "realpath-rs"
-version = "0.1.5"
+version = "0.1.6"
 edition = "2021"
 description = "A cross-platform Rust equivalent of python3's `os.path.realpath`"
 license = "MIT"
