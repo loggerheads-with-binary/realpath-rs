@@ -58,10 +58,44 @@ fn step_by_step_canonicalize(path: &mut PathBuf) {
 ///Returns the canonicalized path as a PathBuf
 ///Returns an Error if there is some problem with absolutization/canonicalization
 ///Error => std::io::Error
+
+
 pub fn realpath(path: &PathBuf) -> Result<PathBuf, std::io::Error> {
     
     let mut path = path.absolutize()?.to_path_buf();
 
     step_by_step_canonicalize(&mut path);
+    Ok(path)
+}
+
+#[cfg(target_os = "windows")]
+///Similar to realpath, but will convert \\?\Drive:\path\to\file to Drive:\path\to\file if it is possible and valid 
+///But does not convert \\?\UNC\server\share\path\to\file to \\server\share\path\to\file
+pub fn realpath_win(path : &PathBuf, dl : bool) -> Result<PathBuf, std::io::Error> {
+    let mut path = path.absolutize()?.to_path_buf();
+    step_by_step_canonicalize(&mut path);
+    
+
+    if dl {
+
+        //It can be \\?\Drive:\path\to\file or \\?\UNC\server\share\path\to\file 
+        //In case of UNC, return as is
+        //In case of Drive, remove \\?\ and return  
+
+        let res = path.strip_prefix(r"\\?\UNC\");
+        if res.is_ok(){
+            return Ok(path);
+        }
+
+        let res = path.strip_prefix(r"\\?\"); 
+
+        if res.is_ok(){
+            let tmp = res.unwrap().to_path_buf();
+            if tmp.canonicalize().is_ok(){
+                return Ok(tmp);
+            }
+        }
+    }
+
     Ok(path)
 }

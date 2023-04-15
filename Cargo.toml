@@ -1,11 +1,12 @@
 [package]
 name = "realpath-rs"
-version = "0.1.0"
+version = "0.1.5"
 edition = "2021"
 description = "A cross-platform Rust equivalent of python3's `os.path.realpath`"
 license = "MIT"
 authors = ["Aniruddh Radhakrisnan<aniruddh.iitb.92@gmail.com>"]
 repository = "https://www.github.com/loggerheads-with-binary/realpath-rs" 
+readme = "README.md"
 
 [lib]
 name = "realpath"

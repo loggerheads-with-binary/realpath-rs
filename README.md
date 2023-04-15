@@ -9,5 +9,12 @@ use std::path::PathBuf;
 
 let src = PathBuf::from("Cargo.toml");
 let dest : PathBuf = realpath(&src)?; 
-println!("{} -> {}", src, dest); 
-```
+println!("{} -> {}", src, dest.display()); 
+
+//For windows 
+let src = PathBuf::from(r"Doge.exe");
+let dest : PathBuf = realpath_win(&src , false)?; 
+println!("{}" , dest.display()); //Returns \\?\Drive:\path\to\Doge.exe
+let dest : PathBuf = realpath_win(&src , true)?;
+println!("{}" , dest.display()); //Returns Drive:\path\to\Doge.exe
+``` 
