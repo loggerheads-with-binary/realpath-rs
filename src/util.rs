@@ -90,6 +90,7 @@ pub fn realpath_win(path : &PathBuf, dl : bool) -> Result<PathBuf, std::io::Erro
     let mut path = path.absolutize()?.to_path_buf();
     step_by_step_canonicalize(&mut path);
     
+    println!("{}" , path.display());
 
     if dl {
 
@@ -97,19 +98,17 @@ pub fn realpath_win(path : &PathBuf, dl : bool) -> Result<PathBuf, std::io::Erro
         //In case of UNC, return as is
         //In case of Drive, remove \\?\ and return  
 
-        let res = path.strip_prefix(r"\\?\UNC\");
-        if res.is_ok(){
-            return Ok(path);
-        }
+        let conv = path.to_string_lossy().to_string();
 
-        let res = path.strip_prefix(r"\\?\"); 
+        match conv.strip_prefix(include_str!("../unc.txt")){
+            Some(res) => return Ok(PathBuf::from(res)),
+            None => (),
+        };
 
-        if res.is_ok(){
-            let tmp = res.unwrap().to_path_buf();
-            if tmp.canonicalize().is_ok(){
-                return Ok(tmp);
-            }
-        }
+        match conv.strip_prefix(include_str!("../straight.txt")){
+            Some(res) => return Ok(PathBuf::from(res)),
+            None => (),
+        };
     }
 
     Ok(path)
